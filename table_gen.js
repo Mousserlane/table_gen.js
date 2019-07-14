@@ -1,5 +1,9 @@
 
 function generate_head(source, useCustomHeader, names, target) {
+    if ((!source) || (Array.isArray(source) && source.length === 0)) {
+      throw new Error('No source included, unable to generate table without data source');
+    }
+    
     var head  = document.getElementById(target) || document.querySelector('thead tr');
     if (useCustomHeader) {
         // Initially, i opt to transform the values that user would choose, eg. camel-cased values.
@@ -25,6 +29,10 @@ function generate_head(source, useCustomHeader, names, target) {
 }
 
 function generate_body(source, target) {
+    if ((!source) || (Array.isArray(source) && source.length === 0)) {
+        throw new Error('No source included, unable to generate table without data source');
+    }
+
     var body = document.getElementById(target) || document.querySelector('tbody');
     for (let i = 0; i < source.length; i++) {
         // We can also use for...of
